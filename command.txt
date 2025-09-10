@@ -1,0 +1,38 @@
+roscore
+####打开场景#########
+cd /home/yz/DSAC-T-main_LGP/catkin_ws
+source ./devel/setup.bash 
+roslaunch multi_robot_scenario TD3_world.launch 
+
+###打开场景（新）###########
+cd /home/yz/DSAC-T-main_LGP/catkin_ws
+source ./devel/setup.bash
+roslaunch aws_robomaker_small_house_world view_small_house.launch
+
+###加载机器人#########
+cd /home/yz/DSAC-T-main_LGP/catkin_ws
+source ./devel/setup.bash 
+roslaunch multi_robot_scenario pioneer3dx.gazebo.launch 
+
+#####训练
+cd /home/yz/DSAC-T-main_LGP
+python3 main.py
+
+####人类偏好训练
+cd /home/yz/DSAC-T-main_LGP
+python3 train_preferences.py
+
+####测试
+cd /home/yz/DSAC-T-main_LGP
+python3 run_policy.py
+
+###医院
+cd /home/yz/DSAC-T-main_LGP/catkin_ws
+source ./devel/setup.bash 
+roslaunch aws_robomaker_hospital_world view_hospital.launch 
+
+###书店
+cd /home/yz/DSAC-T-main_LGP/catkin_ws
+source ./devel/setup.bash 
+roslaunch aws_robomaker_bookstore_world view_bookstore.launch 
+

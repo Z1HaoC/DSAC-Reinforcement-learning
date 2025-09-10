@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find mbot_description)/urdf/mbot_base_gazebo.xacro" />
+   <xacro:include filename="$(find mbot_description)/urdf/sensors/lidar_gazebo.xacro" /> 
+   <!-- <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/> -->
+    <xacro:property name="lidar_offset_x" value="0" />
+    <xacro:property name="lidar_offset_y" value="0" />
+    <xacro:property name="lidar_offset_z" value="0.105" />
+
+    <!-- lidar -->
+
+    <!-- <joint name="velodyne_joint" type="fixed">
+        <origin xyz="${lidar_offset_x} ${lidar_offset_y} ${lidar_offset_z}" rpy="0 0 0" />
+        <parent link="base_link"/>
+        <child link="velodyne_base_link"/>
+    </joint> -->
+    <joint name="lidar_joint" type="fixed">
+        <origin xyz="${lidar_offset_x} ${lidar_offset_y} ${lidar_offset_z}" rpy="0 0 0" />
+        <parent link="base_link"/>
+        <child link="laser_link"/>
+    </joint>
+    <xacro:rplidar prefix="laser"/> 
+<!--
+  <xacro:VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="360" gpu="false" min_angle="-1.57" max_angle="1.57" min_range="0.1">
+    <origin xyz="0.125 0 0.25" rpy="0 0 0" />
+  </xacro:VLP-16>
+-->
+  <!-- <xacro:VLP-16/> -->
+  <xacro:mbot_base_gazebo/>
+
+</robot>
